@@ -1,5 +1,8 @@
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var HelloWorldPlugin = require('./src/helloworldplugin');
+var FileListPlugin = require('./src/filelistplugin');
+var MyPlugin = require('./src/myplugin');
 
 module.exports = {
 	entry: {
@@ -60,5 +63,4 @@ module.exports = {
 			filename: "./index.html"
 		})
 	]
-
 }
