@@ -1,8 +1,6 @@
-var path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var HelloWorldPlugin = require('./src/helloworldplugin');
-var FileListPlugin = require('./src/filelistplugin');
-var MyPlugin = require('./src/myplugin');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
 	entry: {
@@ -48,7 +46,7 @@ module.exports = {
 				use: [
 					{
 						loader: "html-loader",
-						options: {minimize: false}
+						options: { minimize: false }
 					}
 				]
 			}
@@ -61,6 +59,13 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			template: "./src/index.html",
 			filename: "./index.html"
+		}),
+		new webpack.ProvidePlugin({
+			React: 'react',
+			ReactDOM: 'react-dom'
 		})
-	]
+	],
+	devServer: {
+		historyApiFallback: true
+	}
 }
