@@ -1,14 +1,17 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const StyleExtHtmlWebpackPlugin = require('style-ext-html-webpack-plugin');
 
 module.exports = {
-	entry: {
-		main: "./src/app"
-	},
+	entry: [
+		"./src/app", "./src/styles/normalize"
+	],
 	output: {
 		path: path.join(__dirname, 'dist'),
-		filename: "[name].js"
+		filename: "[name].js",
+		publicPath: "/"
 	},
 	optimization: {
 		splitChunks: {
@@ -49,20 +52,39 @@ module.exports = {
 						options: { minimize: false }
 					}
 				]
+			},
+			{
+				test: /\.css$/, use: ExtractTextPlugin.extract({
+					fallback: "style-loader",
+					use: {
+						loader: "css-loader",
+						options: {
+							sourceMap: true
+						}
+					},
+					publicPath: "/"
+				})
 			}
 		]
 	},
 	resolve: {
-		extensions: ['.js', '.jsx']
+		extensions: ['.js', '.jsx', '.css']
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: "./src/index.html",
-			filename: "./index.html"
+			filename: "./index.html",
+			inject: true
 		}),
+		new ExtractTextPlugin({
+			filename: "css/[name].css?[hash]",
+			disable: false,
+			allChunks: true
+		}),
+		// new StyleExtHtmlWebpackPlugin(),
 		new webpack.ProvidePlugin({
 			React: 'react',
-			ReactDOM: 'react-dom'
+			ReactDOM: 'react-dom',
 		})
 	],
 	devServer: {

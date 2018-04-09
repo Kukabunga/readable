@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
 import Loadable from 'react-loadable'
+
 import ProgressIndicator from './components/progress-indicator/ProgressIndicator'
+import PageHeader from './components/headers/page-header/PageHeader'
 
 const MainPageLoadable = Loadable({
     loader: () => import('./views/src/MainPage'),
@@ -43,6 +45,7 @@ class App extends Component {
     render() {
         return (
             <React.Fragment>
+                <PageHeader />
                 <Route exact path="/" render={() => (
                     <MainPageLoadable />
 
