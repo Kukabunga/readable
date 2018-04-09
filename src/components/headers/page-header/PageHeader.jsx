@@ -1,15 +1,16 @@
 import { css } from 'aphrodite/no-important'
 import styles from './PageHeaderStyles'
 
-export default function PageHeader() {
+import Logo from '../../logo/Logo'
+import MainMenu from '../../menu/MainMenu'
+
+export default function PageHeader({texts}) {
     return (
         <header className={css(styles.pageHeader)}>
             <div className={css(styles.mainNavbar)}>
                 <div className={css(styles.mainNavbarSectionLeft)}>
-                    Section Left
-                </div>
-                <div className={css(styles.mainNavbarSectionRight)}>
-                    Section Rigth
+                    <Logo texts={texts}/>
+                    <MainMenu texts={texts}/>
                 </div>
             </div>
         </header>

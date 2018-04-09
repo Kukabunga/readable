@@ -41,11 +41,21 @@ const CreatePostPageLoadable = Loadable({
     }
 })
 
+const texts = {
+    logo: 'Readable',
+    menu: {
+        categories: 'Categories',
+        posts: 'Posts',
+        makePost: 'Make Post'
+    }
+}
+
+
 class App extends Component {
     render() {
         return (
             <React.Fragment>
-                <PageHeader />
+                <PageHeader texts={texts}/>
                 <Route exact path="/" render={() => (
                     <MainPageLoadable />
 

@@ -4,14 +4,17 @@ export default StyleSheet.create({
     pageHeader: {
         width: '100%',
         marginBottom: '36px',
-        borderBottom: '1px solid #babbbc'
+        borderBottom: '1px solid #babbbc',
+        overflow: 'hidden',
+        paddingTop: '20px',
+        paddingBottom: '20px'
     },
     mainNavbarSectionLeft: {
-        fontFamily: ['Open Sans', 'sans-serif']
+        float: 'left',
+        marginLeft: '20%'
     },
     mainNavbarSectionRight: {
-        fontFamily: ['Open Sans', 'sans-serif'],
-        color: 'blue'
-    },
-
+        float: 'right',
+        marginRight: '20%'
+    }
 })
